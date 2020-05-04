@@ -1,21 +1,24 @@
 'use strict'
 
-global.navigator={ userAgent: 'node.js', };
+console.log(navigator.appName + " " + navigator.appVersion);
 
 if(!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices){
-    console.log("Not support");
+    console.log("This browser not support.");
 } else {
     navigator.mediaDevices.enumerateDevices()
-    .then(gotDevece)
+    .then(gotDevice)
     .catch(handleError);
 }
 
 function gotDevice(deviceInfos){
-    deviceInfos.array.forEach(element => {
-        console.log("---------------");
-    });
+    deviceInfos.forEach(function(deviceInfo){
+        console.log(deviceInfo.kind + 
+            " " + deviceInfo.deviceId +
+            " " + deviceInfo.label +
+            " " + deviceInfo.groupId);
+    })
 }
 
 function handleError(err){
-    console.log("Error--------------" + err);
+    console.log("Error->" + err);
 }
