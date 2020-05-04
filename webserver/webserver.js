@@ -5,9 +5,11 @@ var https   = require('https');
 var fs      = require('fs');
 
 var express = require('express');
-var serverInidex = require('serve-index');
+var serverIndex = require('serve-index');
 
 var app = express();
+app.use(serverIndex('./public'));
+app.use(express.static('./public'));
 
 //http
 var http_server = http.createServer(app);
