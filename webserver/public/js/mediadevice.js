@@ -41,7 +41,7 @@ function handleError(error){
     console.log("Get user media error:" + err);
 }
 
-function start() {
+function startMediaDevice() {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         console.log("This browser not support meidadevices");
         return;
@@ -67,5 +67,33 @@ function start() {
     }
 }
 
-//Start capture
-start();
+function gotDisplayMedia(stream){
+    console.log("--->" + stream);
+}
+
+function startCaptureScreen(){
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+        console.log("This browser not support meidadevices");
+        return;
+    } else {
+        var deviceId = videoSource.value;
+        var constraints = {
+            video : {
+                width : 100,
+                height : 80,
+                frameRate : 15,
+                facingMode : 'enviroment',
+                deviceId : deviceId ? {exact:deviceId} : undefined //TODO
+            },
+
+            audio : false
+        }
+
+        navigator.mediaDevices.getDisplayMedia(constraints)
+                        .then(gotDisplayMedia)
+                        .catch(handleError);
+    }
+}
+
+//Start capture audio and video
+startCaptureScreen();
