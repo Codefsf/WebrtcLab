@@ -4,9 +4,9 @@ var audioSource = document.querySelector('select#audioSource');
 var audioOutput = document.querySelector('select#audioOutput');
 var videoSource = document.querySelector('select#videoSource');
 
-var divConstraints = document.querySelector('div#constraints');
-var constraints = {video: true};
-var videoPlayer = document.querySelector("video#player");
+var divConstraints  = document.querySelector('div#constraints');
+var constraints     = {video: true};
+var videoPlayer     = document.querySelector("video#player");
 
 function gotMediaStream(stream){
     var videoTrack = stream.getVideoTracks()[0];
@@ -96,4 +96,4 @@ function startCaptureScreen(){
 }
 
 //Start capture audio and video
-startCaptureScreen();
+startMediaDevice();
