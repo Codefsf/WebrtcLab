@@ -56,6 +56,8 @@ httpSocketIo.sockets.on("connection", (socket)=>{
     });
 
     socket.on('join', (room)=>{
+        logger.log('--------------->' + room);
+
         socket.join(room);
 
         var myRoom  = httpSocketIo.sockets.adapter.rooms[room];
