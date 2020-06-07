@@ -30,7 +30,7 @@ log4js.configure({
     }
 });
 
-var logger = log4js.Logger;
+var logger = log4js.getLogger();
 
 var app = express();
 app.use(serverIndex('./public'));
