@@ -38,7 +38,7 @@ function gotDevices(devicesInfos) {
 }
 
 function handleError(error){
-    console.log("Get user media error:" + err);
+    console.log("Get user media error:" + error);
 }
 
 function startMediaDevice() {
