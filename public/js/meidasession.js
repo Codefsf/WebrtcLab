@@ -12,6 +12,8 @@ function connectServer(){
 	btnConnect.disabled = true;
 
 	socket = io('http://47.91.230.7:81');
+	
+	console.log("Connect:" + socket.id);
 
 	socket.on('joined', function(room, id){
 		console.log('The User(' + id + ') have joined into ' + room);	

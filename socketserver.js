@@ -37,7 +37,7 @@ app.use(serverIndex('./public'));
 app.use(express.static('./public'));
 
 var httpServer = http.createServer(app);
-httpServer.listen(81, '0.0.0.0');
+httpServer.listen(80, '0.0.0.0');
 
 //TODO replace the key
 /*var options = {
@@ -56,7 +56,7 @@ httpSocketIo.sockets.on("connection", (socket)=>{
     });
 
     socket.on('join', (room)=>{
-        logger.log('--------------->' + room);
+        logger.log('Join room:' + room);
 
         socket.join(room);
 
