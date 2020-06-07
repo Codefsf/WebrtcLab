@@ -30,7 +30,7 @@ log4js.configure({
     }
 });
 
-var logger = log4js.logger();
+var logger = log4js.Logger;
 
 var app = express();
 app.use(serverIndex('./public'));
@@ -40,16 +40,17 @@ var httpServer = http.createServer(app);
 httpServer.listen(81, '0.0.0.0');
 
 //TODO replace the key
-var options = {
+/*var options = {
 	key : fs.readFileSync('./cert/1557605_www.learningrtc.cn.key'),
 	cert: fs.readFileSync('./cert/1557605_www.learningrtc.cn.pem')
 }
 var httpsServer = https.createServer(options, app);
+var httpsSocketIo   = socketIo.listen(httpsServer);
+*/
 
 var httpSocketIo    = socketIo.listen(httpServer);
-var httpsSocketIo   = socketIo.listen(httpServer);
 
-httpsSocketIo.sockets.on("connection", (socket)=>{
+httpSocketIo.sockets.on("connection", (socket)=>{
     socket.on("message", (room, data)=>{
         socket.to(room).emit('message', room, data);
     });
@@ -72,5 +73,4 @@ httpsSocketIo.sockets.on("connection", (socket)=>{
             socket.emit('full', room, socket.id);
         }
     });
-
 })
