@@ -4,12 +4,14 @@ var btnConnect = document.querySelector('button#connect');
 var btnLeave = document.querySelector('button#leave');
 var inputRoom = document.querySelector('input#room');
 
+var socket;
+var room;
+
 function connectServer(){
-
-	socket = io.connect();
-
 	btnLeave.disabled = false;
 	btnConnect.disabled = true;
+
+	socket = io('http://47.91.230.7:81');
 
 	socket.on('joined', function(room, id){
 		console.log('The User(' + id + ') have joined into ' + room);	

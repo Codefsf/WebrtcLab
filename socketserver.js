@@ -58,7 +58,7 @@ httpSocketIo.sockets.on("connection", (socket)=>{
     socket.on('join', (room)=>{
         socket.join(room);
 
-        var myRoom  = io.sockets.adapter.rooms[room];
+        var myRoom  = httpSocketIo.sockets.adapter.rooms[room];
         var users   = Object.keys(myRoom.sockets).length;
 
         logger.log('the number of user in room is: ' + users);
