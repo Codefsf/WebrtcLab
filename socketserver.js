@@ -7,7 +7,7 @@ var fs          = require("fs");
 var express     = require("express");
 var serverIndex = require("serve-index");
 
-var socketIo    = require("socket.io");
+var socketIo    = require("socket.io")(80);
 
 var log4js      = require("log4js");
 
@@ -32,12 +32,12 @@ log4js.configure({
 
 var logger = log4js.getLogger();
 
-var app = express();
+/*var app = express();
 app.use(serverIndex('./public'));
 app.use(express.static('./public'));
 
 var httpServer = http.createServer(app);
-httpServer.listen(80, '0.0.0.0');
+httpServer.listen(80, '0.0.0.0');*/
 
 //TODO replace the key
 /*var options = {
@@ -50,7 +50,7 @@ var httpsSocketIo   = socketIo.listen(httpsServer);
 
 var httpSocketIo    = socketIo.listen(httpServer);
 
-httpSocketIo.sockets.on("connection", (socket)=>{
+socketIo.on("connection", (socket)=>{
     socket.on("message", (room, data)=>{
         socket.to(room).emit('message', room, data);
     });
