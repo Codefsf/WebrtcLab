@@ -48,7 +48,7 @@ var httpsServer = https.createServer(options, app);
 var httpsSocketIo   = socketIo.listen(httpsServer);
 */
 
-var httpSocketIo    = socketIo.listen(httpServer);
+//var httpSocketIo    = socketIo.listen(httpServer);
 
 socketIo.on("connection", (socket)=>{
     socket.on("message", (room, data)=>{
@@ -60,7 +60,7 @@ socketIo.on("connection", (socket)=>{
 
         socket.join(room);
 
-        var myRoom  = httpSocketIo.sockets.adapter.rooms[room];
+        var myRoom  = socketIo.adapter.rooms[room];
         var users   = Object.keys(myRoom.sockets).length;
 
         logger.log('the number of user in room is: ' + users);
