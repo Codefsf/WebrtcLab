@@ -11,7 +11,7 @@ function connectServer(){
 	btnLeave.disabled = false;
 	btnConnect.disabled = true;
 
-	socket = io('http://47.91.230.7:81');
+	socket = io('http://47.91.230.7:80');
 	
 	console.log("Connect:" + socket.id);
 
