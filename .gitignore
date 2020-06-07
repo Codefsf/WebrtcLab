@@ -1,2 +1,3 @@
-webserver/public/test.mp4
-/webserver.code-workspace
+./public/test.mp4
+./webserver.code-workspace/
+./node_modules/
