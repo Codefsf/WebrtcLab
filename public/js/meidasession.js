@@ -52,7 +52,7 @@ btnLeave.onclick = ()=> {
 
 btnSend.onclick = ()=>{
 	var message = inputMessage.value;
-	socket.emit("message", message);
+	socket.emit("message", room, message);
 
-	console.log("Send message: " + message);
+	console.log("Send message: " + room + " " + message);
 }
