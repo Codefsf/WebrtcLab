@@ -7,7 +7,7 @@ var fs          = require("fs");
 var express     = require("express");
 var serverIndex = require("serve-index");
 
-var socketIo    = require("socket.io")(80);
+var socketIo    = require("socket.io");
 
 var log4js      = require("log4js");
 
@@ -32,12 +32,12 @@ log4js.configure({
 
 var logger = log4js.getLogger();
 
-/*var app = express();
+var app = express();
 app.use(serverIndex('./public'));
 app.use(express.static('./public'));
 
 var httpServer = http.createServer(app);
-httpServer.listen(80, '0.0.0.0');*/
+httpServer.listen(80, '0.0.0.0');
 
 //TODO replace the key
 /*var options = {
@@ -48,25 +48,24 @@ var httpsServer = https.createServer(options, app);
 var httpsSocketIo   = socketIo.listen(httpsServer);
 */
 
-//var httpSocketIo    = socketIo.listen(httpServer);
+var httpSocketIo    = socketIo.listen(httpServer);
 
-socketIo.on("connection", (socket)=>{
-
-    logger.log('Connection:' + socket.id);
+httpSocketIo.sockets.on("connection", (socket)=>{
+    logger.debug('Connection socket id: ' + socket.id);
 
     socket.on("message", (room, data)=>{
         socket.to(room).emit('message', room, data);
     });
 
     socket.on('join', (room)=>{
-        logger.log('Join room:' + room);
+        logger.debug('Join room: ' + room);
 
         socket.join(room);
 
-        var myRoom  = socketIo.adapter.rooms[room];
+        var myRoom  = httpSocketIo.sockets.adapter.rooms[room];
         var users   = Object.keys(myRoom.sockets).length;
 
-        logger.log('the number of user in room is: ' + users);
+	logger.debug('Join room user num: ' + users);
  
         if (users < 3) {
             socket.emit('join', room, socket.id);
