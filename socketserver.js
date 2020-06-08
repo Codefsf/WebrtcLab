@@ -48,6 +48,8 @@ httpSocketIo.sockets.on("connection", (socket)=>{
     socket.on("message", (room, data)=>{
         logger.debug('Receive message: ' + data);
 
+        socket.emit('message', room, data);
+
         socket.to(room).emit('message', room, data);
     });
 
@@ -59,7 +61,7 @@ httpSocketIo.sockets.on("connection", (socket)=>{
         var myRoom  = httpSocketIo.sockets.adapter.rooms[room];
         var users   = Object.keys(myRoom.sockets).length;
 
-	logger.debug('Join room user num: ' + users);
+	    logger.debug('Join room user num: ' + users);
  
         if (users < 3) {
             socket.emit('joined', room, socket.id);
