@@ -39,18 +39,10 @@ app.use(express.static('./public'));
 var httpServer = http.createServer(app);
 httpServer.listen(80, '0.0.0.0');
 
-//TODO replace the key
-/*var options = {
-	key : fs.readFileSync('./cert/1557605_www.learningrtc.cn.key'),
-	cert: fs.readFileSync('./cert/1557605_www.learningrtc.cn.pem')
-}
-var httpsServer = https.createServer(options, app);
-var httpsSocketIo   = socketIo.listen(httpsServer);
-*/
-
-var httpSocketIo    = socketIo.listen(httpServer);
+var httpSocketIo = socketIo.listen(httpServer);
 
 httpSocketIo.sockets.on("connection", (socket)=>{
+    logger.debug('------------------------Connection start--------------------------');
     logger.debug('Connection socket id: ' + socket.id);
 
     socket.on("message", (room, data)=>{
@@ -80,9 +72,20 @@ httpSocketIo.sockets.on("connection", (socket)=>{
 
     socket.on('leave', (room)=>{
         logger.debug('User leave room id: ' + room);
-	var myRoom = httpSocketIo.sockets.adapter.rooms[room];
-	var user   = (myRoom) ? Object.keys(myRoom.sockets).length : 0;
-	socket.to(room).emit('bye', room, socket.id, "bye to room");
-	socket.emit('bye', room, socket.id, "bye to socket");
+	    var myRoom = httpSocketIo.sockets.adapter.rooms[room];
+	    var user   = (myRoom) ? Object.keys(myRoom.sockets).length : 0;
+	    socket.to(room).emit('bye', room, socket.id, "bye to room");
+	    socket.emit('bye', room, socket.id, "bye to socket");
     });
 })
+
+
+
+//TODO replace the key
+/*var options = {
+	key : fs.readFileSync('./cert/1557605_www.learningrtc.cn.key'),
+	cert: fs.readFileSync('./cert/1557605_www.learningrtc.cn.pem')
+}
+var httpsServer = https.createServer(options, app);
+var httpsSocketIo   = socketIo.listen(httpsServer);
+*/
