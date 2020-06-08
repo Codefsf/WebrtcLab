@@ -51,6 +51,9 @@ var httpsSocketIo   = socketIo.listen(httpsServer);
 //var httpSocketIo    = socketIo.listen(httpServer);
 
 socketIo.on("connection", (socket)=>{
+
+    logger.log('Connection:' + socket.id);
+
     socket.on("message", (room, data)=>{
         socket.to(room).emit('message', room, data);
     });
