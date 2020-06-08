@@ -68,7 +68,7 @@ httpSocketIo.sockets.on("connection", (socket)=>{
 	logger.debug('Join room user num: ' + users);
  
         if (users < 3) {
-            socket.emit('join', room, socket.id);
+            socket.emit('joined', room, socket.id);
             if (users > 1) {
                 socket.to(room).emit('otherjoin', room);
             }
@@ -76,5 +76,13 @@ httpSocketIo.sockets.on("connection", (socket)=>{
             socket.leave(room);
             socket.emit('full', room, socket.id);
         }
+    });
+
+    socket.on('leave', (room)=>{
+        logger.debug('User leave room id: ' + room);
+	var myRoom = httpSocketIo.sockets.adapter.rooms[room];
+	var user   = (myRoom) ? Object.keys(myRoom.sockets).length : 0;
+	socket.to(room).emit('bye', room, socket.id, "bye to room");
+	socket.emit('bye', room, socket.id, "bye to socket");
     });
 })

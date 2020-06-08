@@ -26,3 +26,21 @@
 20:23:50 DEBUG - Connection socket id: w3pklzKlI6p7lOiMAAAB
 20:23:52 DEBUG - Join room: aaa
 20:23:52 DEBUG - Join room user num: 1
+20:30:47 DEBUG - Connection socket id: gL1fqZFeIhaM9061AAAA
+20:30:50 DEBUG - Connection socket id: sVKcwzuKOjuhaA3_AAAB
+20:30:51 DEBUG - Join room: aaa
+20:30:51 DEBUG - Join room user num: 1
+20:32:43 DEBUG - Connection socket id: 8sipflCsnbfcS7okAAAC
+20:32:44 DEBUG - Join room: aaa1111
+20:32:44 DEBUG - Join room user num: 1
+20:41:24 DEBUG - Connection socket id: zuIozo1xmRiex-xkAAAA
+20:41:24 DEBUG - Join room: aaa
+20:41:24 DEBUG - Join room user num: 1
+20:42:36 DEBUG - Connection socket id: 9kggRrFVhmZc_WbDAAAA
+20:42:37 DEBUG - Join room: aaa
+20:42:37 DEBUG - Join room user num: 1
+20:42:38 DEBUG - User leave room id: aaa
+20:42:47 DEBUG - Connection socket id: 5xN9ggtbi33mR3ffAAAB
+20:42:48 DEBUG - Join room: aaa
+20:42:48 DEBUG - Join room user num: 1
+20:42:50 DEBUG - User leave room id: aaa
