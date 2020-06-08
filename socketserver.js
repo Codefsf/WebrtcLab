@@ -46,6 +46,8 @@ httpSocketIo.sockets.on("connection", (socket)=>{
     logger.debug('Connection socket id: ' + socket.id);
 
     socket.on("message", (room, data)=>{
+        logger.debug('Receive message: ' + data);
+
         socket.to(room).emit('message', room, data);
     });
 
