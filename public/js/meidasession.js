@@ -8,6 +8,7 @@ var inputMessage = document.querySelector('input#message');
 
 var socket;
 var room;
+var start;
 
 function connectServer(){
 	btnLeave.disabled = false;
@@ -28,7 +29,7 @@ function connectServer(){
 	});
 
 	socket.on('message', (room, message)=>{
-		console.log("Receive message from room: " + message);
+		console.log("Receive message from room: " + message + " " + (Date.now() - start));
 	});
 
 	room = inputRoom.value;
@@ -50,9 +51,21 @@ btnLeave.onclick = ()=> {
 	}
 }
 
-btnSend.onclick = ()=>{
+function sendMessage(){
 	var message = inputMessage.value;
+
 	socket.emit("message", room, message);
 
 	console.log("Send message: " + room + " " + message);
+		
+	start = Date.now();
+
+	setTimeout(sendMessage, 1);
+
+}
+
+btnSend.onclick = ()=>{
+	sendMessage();
+
+	setTimeout(sendMessage, 1);
 }
