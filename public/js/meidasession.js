@@ -42,14 +42,14 @@ btnConnect.onclick = ()=> {
 	connectServer();
 }
 
-btnLeave.onclick = ()=> {
+/*btnLeave.onclick = ()=> {
 	if(room !== ''){
 		socket.emit('leave', room);
 		btnLeave.disabled = true;
 		btnConnect.disabled = false;
 		socket.disconnect(); 
 	}
-}
+}*/
 
 function sendMessage(){
 	var message = inputMessage.value;
@@ -59,13 +59,8 @@ function sendMessage(){
 	console.log("Send message: " + room + " " + message);
 		
 	start = Date.now();
-
-	setTimeout(sendMessage, 1);
-
 }
 
 btnSend.onclick = ()=>{
 	sendMessage();
-
-	setTimeout(sendMessage, 1);
 }

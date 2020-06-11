@@ -8,6 +8,8 @@ var divConstraints  = document.querySelector('div#constraints');
 var constraints     = {video: true};
 var videoPlayer     = document.querySelector("video#player");
 
+var localStream;
+
 function gotMediaStream(stream){
     var videoTrack = stream.getVideoTracks()[0];
 	var videoConstraints = videoTrack.getSettings();
@@ -41,8 +43,8 @@ function handleError(error){
     console.log("Get user media error:" + error);
 }
 
-function startMediaDevice() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+async function startMediaDevice() {
+    /*if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         console.log("This browser not support meidadevices");
         return;
     } else {
@@ -64,7 +66,18 @@ function startMediaDevice() {
                         .then(gotDevices)
                         .catch(handleError);
 
-    }
+    }*/
+
+    const stream = await navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: {
+            width  : 320,
+            height : 240,
+        }
+    });
+
+    videoPlayer.srcObject = stream;
+    localStream = stream;
 }
 
 function gotDisplayMedia(stream){
