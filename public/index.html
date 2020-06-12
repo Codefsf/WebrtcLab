@@ -38,6 +38,18 @@
 		</section>
 
 		<td><video autoplay playsinline id="player"></video></td>
+		<td><video autoplay playsinline id="remoteplayer"></video></td>
+
+		<div>
+			<label>Call:</label>
+			<button id="call">call</button>
+		</div>
+
+		<div>
+			<label>Hang:</label>
+			<button id="hang">hang</button>
+		</div>
+
 
 		<!--
         <table>
@@ -58,6 +70,7 @@
 
 		<script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
 		<script src="./js/meidasession.js"></script>
+		<script src="./js/adapter.js"></script>
 		<script src="./js/peerconnection.js"></script>
     </body>
 </html>
