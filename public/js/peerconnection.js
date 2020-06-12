@@ -112,16 +112,6 @@ async function onCreateAnswerSuccess(desc) {
 async function call() {
     console.log('Start call');
 
-    const videoTracks = localStream.getVideoTracks;
-    const audioTracks = localStream.getAudioTracks;
-
-    if (videoTracks.length > 0) {
-        console.log(`Using video device: ${videoTracks[0].label}`);
-    }
-    if (audioTracks.length > 0) {
-        console.log(`Using audio device: ${audioTracks[0].label}`);
-    }
-
     pc1 = new RTCPeerConnection();
     pc1.addEventListener('icecandidate', e => onIceCandidate(pc1, e));
     pc1.addEventListener('iceconnectionstatechange', e => onIceStateChange(pc1, e));
